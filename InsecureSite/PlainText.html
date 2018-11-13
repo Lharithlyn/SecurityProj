@@ -2,7 +2,7 @@
 <html>
 <body>
 
-<form action="action_page.php" onsubmit="return myFunction()">
+<form action="/action_page.php" onsubmit="return myFunction()">
   Name (max 10 characters): <input type="text" id="fname" size="20" name="fname"><br>
   Age (from 1 to 100): <input type="text" id="age" size="20" name="age"><br>
   E-mail: <input type="text" id="email" size="20" name="mail"><br><br>
@@ -36,6 +36,34 @@ function myFunction() {
     }
 }
 </script>
+
+
+
+<script>
+        function myFunction() {
+
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            submitOK = "true";
+
+            if(username == ''){
+                alert("Username must not be blank");
+                submitOK = "false";
+            }
+
+            if(password == ''){
+                alert("Password must not be blank");
+                submitOk = "false";
+            }
+        
+            if (submitOK == "false") {
+                return false;
+            } else {
+                showInput();
+            }
+        }
+        </script>
 
 </body>
 </html>
