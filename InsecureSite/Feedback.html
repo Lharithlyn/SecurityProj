@@ -14,14 +14,28 @@
 	<!-- Bootstrap icon -->
 	<link href="../bootstrap/css/bootstrap.icon-large.min.css" rel="stylesheet">
 	<!-- Custom styles for this template -->
-	<link href="../theme.css" rel="stylesheet">
+    <link href="../theme.css" rel="stylesheet">
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+
+    <script type="text/Javascript">
+        function chatMessageRecieved() {
+            var message = document.getElementById("username").value;
+       $("#chatContent").append("<p> Thank you, " + message + ", your feedback has been recieved</p>")
+    }
+    </script>
+
+    <style type="text/css"></style>
 </head>
+
 
 <body>
     <div class="container-narrow">
         <div class="title">
-        <h4><strong>Information Security</strong>
-            <p style="font-size:14px">Autumn 2018</p>
+        <h4><strong>View Grades</strong>
+            <p style="font-size:14px">Information Security</p>
+            <p style="font-size:12px">Autumn 2018</p>
         </h4>    
     </div>
 
@@ -37,39 +51,36 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul id="site-nav" class="nav navbar-nav">
-                <li class="active"><a href="./">Home</a></li>
-                <li><a href="ChatRoom.html">Class Forum</a></li>
+                <li><a href="InsecureSite.html">Home</a></li>
+                <li><a href="">Class Forum</a></li> <!--Link Webpage Here-->
                 <li><a href="">Buy Class Textbook</a></li> <!--Link Webpage Here-->
-                <li><a href="Feedback.html">View Grades</a></li> 
+                <li class="active"><a href="./">Course Feedback</a></li> 
             </ul>
         </div>
     </div>
     <!-- END SITE NAVIGATION -->
 
-    <!-- INFO TABLE -->
-    <div class="content">
-            <h3>Overview</h3>
-            <hr>
-            <h4>General Information</h4>       
-        </div>
-            <table>
-                    <tbody>
-                        <tr>
-                            <td>Title</td>
-                            <td>Information Security - Cross Site Scripting Attacks and Prevention</td>
-                        </tr>
-                        <tr>
-                            <td>Goals</td>
-                            <td>Understand website vulnerabilities that may be exploited by Cross-Site Scripting and preventative measures against these exploits.</td>
-                        </tr>
-                        <tr>
-                            <td>Authors</td>
-                            <td>Ellen DeWitt, Nate Hymer, Aisha Iftikhar, Tim Lake and Annette Petty</td>
-                        </tr>
-                    </tbody>
-                </table>
+
+    <!-- FEEDBACK ENTRY -->
+    <label><b>Name: </b></label><br>
+    <input type="text" name="username" id="username">
+    <br>
+    <label></label><br>
+    <label><b>Feedback: </b></label><br>
+    <textarea id="txtarea" rows="7" cols="80"></textarea>
+    <br>
+    <input type="submit" onclick="chatMessageRecieved();"><br/>
+    <br>
+    <!-- END FEEDBACK ENTRY -->
+
+
+    <!-- DISPLAY MESSAGE -->
+    <div id="chatContent">
+    <!-- content is inserted here -->
     </div>
-    <!-- END INFO TABLE -->
+    <!-- END DISPLAY MESSAGE -->
+
+
 </div>
 
 

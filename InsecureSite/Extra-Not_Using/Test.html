@@ -2,13 +2,34 @@
 <html>
   <head lang="en">
   <meta charset="UTF-8">
+
   <script language="JavaScript">
     function showInput() {
+        //alert("Showing User Input");
         document.getElementById('displayUsername').innerHTML = 
                     document.getElementById("username").value;
 
         document.getElementById('displayPassword').innerHTML = 
                 document.getElementById("password").value;
+
+    readTextFile("test.json", function(text){
+    var data = JSON.parse(text);
+    console.log(data);
+    });
+    }
+  </script>
+
+  <script language="JavaScript">
+    function readTextFile(file, callback) {
+        var rawFile = new XMLHttpRequest();
+        rawFile.overrideMimeType("application/json");
+        rawFile.open("GET", file, true);
+        rawFile.onreadystatechange = function() {
+            if (rawFile.readyState === 4 && rawFile.status == "200") {
+                callback(rawFile.responseText);
+            }
+        }
+        rawFile.send(null);
     }
   </script>
 
@@ -49,7 +70,7 @@
     <br>
   </form>
 
-  <input type="submit" onclick="showInput();"><br/>
+  <input type="submit" onclick="showInput(); return false"><br/>
   <label>Your input: </label>
   <p><span id='displayUsername'></span></p>
   <p><span id='displayPassword'></span></p>
