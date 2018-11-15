@@ -1,0 +1,54 @@
+{
+    "students": [
+        {
+            "username": "Student1",
+            "password": "Password1",
+            "grade": 100
+        },
+        {
+            "username": "Student2",
+            "password": "Password2",
+            "grade": 95
+        },
+        {
+            "username": "Student3",
+            "password": "Password3",
+            "grade": 90
+        },
+        {
+            "username": "Student4",
+            "password": "Password4",
+            "grade": 85
+        },
+        {
+            "username": "Student5",
+            "password": "Password5",
+            "grade": 80
+        },
+        {
+            "username": "Student6",
+            "password": "Password6",
+            "grade": 75
+        },
+        {
+            "username": "Student7",
+            "password": "Password7",
+            "grade": 70
+        },
+        {
+            "username": "Student8",
+            "password": "Password8",
+            "grade": 65
+        },
+        {
+            "username": "Student9",
+            "password": "Password9",
+            "grade": 60
+        },
+        {
+            "username": "Student10",
+            "password": "Password10",
+            "grade": 55
+        }
+    ]
+ }

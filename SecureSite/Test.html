@@ -3,19 +3,28 @@
   <head lang="en">
   <meta charset="UTF-8">
 
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+
+
   <script language="JavaScript">
     function showInput() {
-        //alert("Showing User Input");
         document.getElementById('displayUsername').innerHTML = 
                     document.getElementById("username").value;
 
         document.getElementById('displayPassword').innerHTML = 
                 document.getElementById("password").value;
-
-    readTextFile("test.json", function(text){
-    var data = JSON.parse(text);
-    console.log(data);
+    console.log("?????");
+    //readTextFile("test.json", function(text){
+    //var data = JSON.parse(text);
+    //console.log(data);
+    //});
+        $.getJSON("Students.json", function (data) {
+        $.each(data, function (index, value) {
+        console.log(value);
+        });
     });
+   
     }
   </script>
 
@@ -36,17 +45,17 @@
     <script>
         function myFunction() {
 
-            var username = document.getElementById("username").value;
-            var password = document.getElementById("password").value;
+            var user = document.getElementById("username").value;
+            var pass = document.getElementById("password").value;
 
             submitOK = "true";
 
-            if(username == ''){
+            if(user == ""){
                 alert("Username must not be blank");
                 submitOK = "false";
             }
 
-            if(password == ''){
+            if(pass == ''){
                 alert("Password must not be blank");
                 submitOk = "false";
             }
@@ -70,7 +79,7 @@
     <br>
   </form>
 
-  <input type="submit" onclick="showInput(); return false"><br/>
+  <input type="submit" onclick="showInput();"><br/>
   <label>Your input: </label>
   <p><span id='displayUsername'></span></p>
   <p><span id='displayPassword'></span></p>

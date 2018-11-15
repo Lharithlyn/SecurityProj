@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+    <meta charset="UTF-8">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+
+
+    <script language="JavaScript">
+        function showInput() {
+            document.getElementById('displayUsername').innerHTML = 
+                        document.getElementById("username").value;
+
+            document.getElementById('displayPassword').innerHTML = 
+                    document.getElementById("password").value;
+
+        //     $.getJSON("Students.json", function (data) {
+        //     $.each(data, function (index, value) {
+        //         console.log(value);
+        //     });
+        // }); 
+
+            // $.get( "Students.json", function( data){
+            // JSONItems = data;
+            // //console.log(JSONItems);
+            // });
+            // console.log(JSONItems.length)
+            // var i;
+            // for(i = 0; i < JSONItems.length; i++){
+            //     console.log(JSONItems[i]);
+            // }
+        }
+
+    </script>
+
+    <script>
+        function myFunction() {
+
+            var user = document.getElementById("username").value;
+            var pass = document.getElementById("password").value;
+
+            submitOK = "true";
+
+            if(user == ""){
+                alert("Username must not be blank");
+                submitOK = "false";
+            }
+
+            if(pass == ''){
+                alert("Password must not be blank");
+                submitOk = "false";
+            }
+        
+            if (submitOK == "false") {
+                return false;
+            } else {
+                showInput();
+            }
+        }
+    </script>
+  </head>
+<body>
+
+  <form>
+    <label><b>Username: </b></label>
+    <input type="text" name="username" id="username">
+    <br>
+    <label><b>Password: </b></label>
+    <input type="password" name="password" id="password">
+    <br>
+  </form>
+
+  <input type="submit" onclick="showInput();"><br/>
+  <label>Your input: </label>
+  <p><span id='displayUsername'></span></p>
+  <p><span id='displayPassword'></span></p>
+
+</body>
+</html>
