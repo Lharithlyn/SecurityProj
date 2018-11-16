@@ -1,46 +1,65 @@
 <!DOCTYPE html>
 <?php
-session_start ();
-function loginForm() {
-    echo '
-   <div id="loginform">
-   <form action="index.php" method="post">
+    session_start ();
+    function loginForm() {
+        echo '
+    <div id="loginform">
+    <form action="index.php" method="post">
        <p>Please enter your name to continue:</p>
-       <label for="name">Name:</label>
+       <label for="name">Name: </label>
        <input type="text" name="name" id="name" />
        <input type="submit" name="enter" id="enter" value="Enter" />
-   </form>
-   </div>
-   ';
-}
+    </form>
+    </div>
+    ';}
  
 if (isset ( $_POST ['enter'] )) {
     if ($_POST ['name'] != "") {
-        $_SESSION ['name'] = stripslashes ( htmlspecialchars ( $_POST ['name'] ) );
-        $fp = fopen ( "log.html", 'a' );
-        fwrite ( $fp, "<div class='msgln'><i>User " . $_SESSION ['name'] . " has joined the chat session.</i><br></div>" );
-        fclose ( $fp );
+        $_SESSION ['name'] = stripslashes (( $_POST ['name']));
+        $fp = fopen ("log.html", 'a');
+        fwrite ($fp, "<div class='msgln'><i>User " . $_SESSION ['name'] . " has joined the chat session.</i><br></div>");
+        fclose ($fp);
     } else {
         echo '<span class="error">Please type in a name</span>';
     }
 }
  
-if (isset ( $_GET ['logout'] )) {
-   
-    // Simple exit message
-    $fp = fopen ( "log.html", 'a' );
-    fwrite ( $fp, "<div class='msgln'><i>User " . $_SESSION ['name'] . " has left the chat session.</i><br></div>" );
-    fclose ( $fp );
+if (isset($_GET ['logout'])) {
+    $fp = fopen ("log.html", 'a');
+    fwrite ($fp, "<div class='msgln'><i>User " . $_SESSION ['name'] . " has left the chat session.</i><br></div>");
+    fclose ($fp);
    
     session_destroy ();
     header ( "Location: index.php" ); // Redirect the user
-}
+    }
+?>
+    
 <html>
 <head>
   <title>Class Chat Room</title>
   <link type="text/css" rel="stylesheet" href="theme.css" />
 </head>
 <body>
+  <!-- SITE NAVIGATION -->
+    <div class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul id="site-nav" class="nav navbar-nav">
+                <li><a href="InsecureSite.html">Course Homepage</a></li>
+                <li><a href="">Class Forum</a></li> <!--Link Webpage Here-->
+                <li><a href="">Buy Class Textbook</a></li> <!--Link Webpage Here-->
+                <li class="active"><a href="./">Course Feedback</a></li> 
+            </ul>
+        </div>
+    </div>
+    <!-- END SITE NAVIGATION -->
   <div id = "wrapper">
      <div id = "menu">
        <p class = "Welcome" <b></b>/>
@@ -113,8 +132,6 @@ setInterval (loadLog, 2500);
         src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
     <script type="text/javascript">
 </script>
-
-
 
   </body>
 </html>
