@@ -1,39 +1,4 @@
-<!DOCTYPE html>
-<?php
-    session_start ();
-    function loginForm() {
-        echo '
-    <div id="loginform">
-    <form action="index.php" method="post">
-       <p>Please enter your name to continue:</p>
-       <label for="name">Name: </label>
-       <input type="text" name="name" id="name" />
-       <input type="submit" name="enter" id="enter" value="Enter" />
-    </form>
-    </div>
-    ';}
- 
-if (isset ( $_POST ['enter'] )) {
-    if ($_POST ['name'] != "") {
-        $_SESSION ['name'] = stripslashes (( $_POST ['name']));
-        $fp = fopen ("log.html", 'a');
-        fwrite ($fp, "<div class='msgln'><i>User " . $_SESSION ['name'] . " has joined the chat session.</i><br></div>");
-        fclose ($fp);
-    } else {
-        echo '<span class="error">Please type in a name</span>';
-    }
-}
- 
-if (isset($_GET ['logout'])) {
-    $fp = fopen ("log.html", 'a');
-    fwrite ($fp, "<div class='msgln'><i>User " . $_SESSION ['name'] . " has left the chat session.</i><br></div>");
-    fclose ($fp);
-   
-    session_destroy ();
-    header ( "Location: index.php" ); // Redirect the user
-    }
-?>
-    
+<!DOCTYPE html>   
 <html>
 <head>
   <title>Class Chat Room</title>
@@ -60,9 +25,45 @@ if (isset($_GET ['logout'])) {
         </div>
     </div>
     <!-- END SITE NAVIGATION -->
+    
+   <!-------Start Chat Session-----------> 
+   <?php
+    session_start ();
+    
+    function loginForm() {
+        echo'
+        <div id="loginform">
+            <form action="ChatRoom.php" method="post">
+                <p>Please enter your name to continue:</p>
+                <label for="name">Name: </label>
+                <input type="text" name="name" id="name" />
+                <input type="submit" name="enter" id="enter" value="Enter" />
+            </form>
+        </div>
+        ';
+    }
+    ?>
+    
+if (isset ( $_POST ['enter'] )) {
+    if ($_POST ['name'] != "") {
+        $_SESSION ['name'] = stripslashes (( $_POST ['name']));
+        $fp = fopen ("log.html", 'a');
+        fwrite ($fp, "<div class='msgln'><i>User " . $_SESSION ['name'] . " has joined the chat session.</i><br></div>");
+        fclose ($fp);
+    } else {
+        echo '<span class="error">Please type in a name</span>';
+    }
+}
+ 
+  <?php
+        if(!isset($_SESSION['name'])){
+             loginForm();
+        }
+        else{
+  ?>
   <div id = "wrapper">
      <div id = "menu">
-       <p class = "Welcome" <b></b>/>
+       <p class="welcome">Welcome, <b><?php echo $_SESSION['name']; ?></b></p>
        <p class="Logout"><a id="exit" href="#">Exit Chat</a></p>
       <div style="clear:both"></div>
     </div>
@@ -82,36 +83,44 @@ if (isset($_GET ['logout'])) {
      <input name="usermsg" type="text" id="usermsg" size="63" />
      <input name="submitmsg" type="submit"  id="submitmsg" value="Send" />
     </form>
-    </div?
+    </div>
+   
   
    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
-   <script type="text/javascript"> 
-   </script>
-
-  //jQuery Document
-$(document).ready(function(){
-    //If user wants to end session
-    $("#exit").click(function(){
-        var exit = confirm("Are you sure you want to end the session?");
-        if(exit==true){window.location = 'index.php?logout=true';}     
+   <script type="text/javascript">
+     //jQuery Document
+     $(document).ready(function(){
+        //If user wants to end session
+        $("#exit").click(function(){
+            var exit = confirm("Are you sure you want to end the session?");
+            if(exit==true){window.location = 'ChatRoom.php?logout=true';}     
+        });
     });
-});
+    
+    if (isset($_GET ['logout'])) {
+        $fp = fopen ("log.html", 'a');
+        fwrite ($fp, "<div class='msgln'><i>User " . $_SESSION ['name'] . " has left the chat session.</i><br></div>");
+        fclose ($fp);
+   
+        session_destroy ();
+        header ( "Location: ChatRoom.php" ); // Redirect the user
+    }
+    
+       //If user submits the form
+        $("#submitmsg").click(function(){
+            var clientmsg = $("#usermsg").val();
+            $.post("post.php", {text: clientmsg});             
+            $("#usermsg").attr("value", "");
+            loadLog;
+            return false;
+        });
  
-//If user submits the form
-$("#submitmsg").click(function(){
-        var clientmsg = $("#usermsg").val();
-        $.post("post.php", {text: clientmsg});             
-        $("#usermsg").attr("value", "");
-        loadLog;
-    return false;
-});
- 
-function loadLog(){    
-    var oldscrollHeight = $("#chatbox").attr("scrollHeight") - 20; //Scroll height before the request
-    $.ajax({
-        url: "log.html",
-        cache: false,
-        success: function(html){       
+        function loadLog(){    
+            var oldscrollHeight = $("#chatbox").attr("scrollHeight") - 20; //Scroll height before the request
+            $.ajax({
+            url: "log.html",
+            cache: false,
+            success: function(html){       
             $("#chatbox").html(html); //Insert chat log into the #chatbox div  
            
             //Auto-scroll          
@@ -122,16 +131,17 @@ function loadLog(){
         },
     });
 }
- 
-setInterval (loadLog, 2500);
-</script>
-<?php
-    }
-    ?>
-    <script type="text/javascript"
-        src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
-    <script type="text/javascript">
-</script>
+<!-------Refresh Chat Log Page--------->
+setInterval (loadLog, 5000);
 
+    
+    
+    
+    </script>
+ 
+?>  
+    <?php
+        }
+    ?>
   </body>
 </html>
