@@ -13,29 +13,6 @@ chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-security
         });
     });     
 </script>
-
-<!-- change grade demo. -->
-<script  type="text/Javascript">
-    function changeGrade(username, grade){
-        var studentsList = [];
-        console.log("what the");
-        $.getJSON('Students.json', function(data) {
-            console.log("fuck");
-            $.each(data.students, function(key, student) {
-                studentsList.push(student);
-                console.log("Students" + student.userName);
-            });
-            $.each(studentsList, function(key, student){
-                if(student.username == username){
-                    student.grade = grade;
-                    console.log("new grade is: " + grade + "%");
-                }
-            });
-        }); 
-        console.log("success");
-        var JSONdata = JSON.stringify(studentsList);
-    }  
-</script>
         
 <!--
     <script>changeGrade("smith1234", 70);</script>
