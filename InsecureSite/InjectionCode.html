@@ -1,0 +1,50 @@
+<!-- Display all student logins -->
+<script>
+    var studentsList = [];
+    $.getJSON('students.json', function(data) {
+        $.each(data.students, function(key, student) {
+            studentsList.push(student);
+        });
+        $.each(studentsList, function(key, student){
+            console.log("Username: " + student.username + ", Password: " + student.password);
+        });
+    });     
+</script>
+
+<script  type="text/Javascript">
+    function changeGrade(username, grade){
+        var studentsList = [];
+        $.getJSON('students.json', function(data) {
+            $.each(data.students, function(key, student) {
+                studentsList.push(student);
+            });
+            $.each(studentsList, function(key, student){
+                if(student.username == username){
+                    student.grade = grade;
+                    console.log("new grade is" + grade);
+                }
+            });
+        });    
+    }  
+</script>
+
+<!-- change grade and write to file. -->
+<script>
+    var studentsList = [];
+    function changeGrade(username, grade){
+        $.getJSON('students.json', function(data) {
+                $.each(data.students, function(key, student) {
+                    studentsList.push(student);
+                });
+                $.each(studentsList, function(key, student){
+                    if(student.username == username){
+                        student.grade = grade;
+                    }
+                });
+                //var json = JSON.parse(‘<json string>’);
+                // var JSONData = JSON.stringify(data);
+                // var fs = require('fs');
+                // fs.writeFile("students.1.json", JSONData);
+            });              
+    }
+</script>

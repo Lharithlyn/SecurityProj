@@ -39,9 +39,19 @@ chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-security
         }
     </script>
 
-    <!-- Change Grade -->
-    <script type="text/Javascript">
-    
+    <!-- Display all student logins -->
+    <script>
+        function displayAllStudentLogins(){
+            var studentsList = [];
+            $.getJSON('students.json', function(data) {
+                $.each(data.students, function(key, student) {
+                    studentsList.push(student);
+                });
+                $.each(studentsList, function(key, student){
+                    console.log(student.username);
+                });
+            });
+        }     
     </script>
 
     <!-- Get students list and check input-->
@@ -78,7 +88,7 @@ chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-security
             });                  
         }
     </script>
-    
+        
     <!--END SCRIPTS -->
 
 </head>
