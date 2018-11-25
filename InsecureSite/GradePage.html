@@ -19,6 +19,37 @@
      <style type="text/css"></style>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/3.3.1/jquery-ui.min.js" ></script>
+
+    <script>
+        $(document).ready(function() {
+            //display all data to the screen
+            console.log( "ready!" );
+            var studentsList = [];
+            $.getJSON('students.json', function(data) {
+                $.each(data.students, function(key, student) {
+                    studentsList.push(student);
+                });
+                $.each(studentsList, function(key, student){
+                    if(userName == student.username){
+                        foundUser = true; 
+                        if(password == student.password){
+                            passwordCorrect = true;
+                            //console.log("correct password");
+                            grade = student.grade;
+                        }
+
+                    }
+                });
+                if(foundUser == true && passwordCorrect == true){
+                    //console.log("login successful");
+                    displayGrade(grade);
+                } else {
+                    displayLoginFail();
+                    //console.log("login unsuccessful");
+                }
+            });                  
+        });
+    </script>
     
     <!--SCRIPTS -->
     <!--Display grade for correctly entered login-->
@@ -103,37 +134,14 @@
                 <li><a href="InsecureSite.html">Course Homepage</a></li>
                 <li><a href="">Class Forum</a></li> 
                 <li><a href="">Buy Class Textbook</a></li> 
-                <li class="active"><a href="./">Course Feedback</a></li> 
+                <li class="active"><a href="ViewGrades.html">View Grades</a></li> 
             </ul>
         </div>
     </div> 
     <!-- END SITE NAVIGATION -->
 
 
-    <!-- FEEDBACK ENTRY -->
-    <label><b>Username: </b></label><br>
-    <input type="text" name="username" id="username">
-    <br>
-    <label></label>
-    <label><b>Password: </b></label>
-    <br>
-    <input type="password" name="password" id="password">  
-    <br>
-   
-    <input type="submit" onclick="checkLogin();"><br/>
-
-    <br>
-    <!-- END FEEDBACK ENTRY -->
-
-
-    <!-- DISPLAY MESSAGE -->
-    <div id="gradeDisplay">
-    <!-- content is inserted here -->
-    </div>
-    <!-- END DISPLAY MESSAGE -->
-
-
-<!-- </div> -->
+</div>
 
 
 </body>

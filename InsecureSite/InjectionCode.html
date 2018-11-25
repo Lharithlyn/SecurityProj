@@ -1,3 +1,6 @@
+<!--
+chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-security
+-->
 <!-- Display all student logins -->
 <script>
     var studentsList = [];
@@ -11,6 +14,32 @@
     });     
 </script>
 
+<!-- change grade demo. -->
+<script  type="text/Javascript">
+    function changeGrade(username, grade){
+        var studentsList = [];
+        console.log("what the");
+        $.getJSON('Students.json', function(data) {
+            console.log("fuck");
+            $.each(data.students, function(key, student) {
+                studentsList.push(student);
+                console.log("Students" + student.userName);
+            });
+            $.each(studentsList, function(key, student){
+                if(student.username == username){
+                    student.grade = grade;
+                    console.log("new grade is: " + grade + "%");
+                }
+            });
+        }); 
+        console.log("success");
+        var JSONdata = JSON.stringify(studentsList);
+    }  
+</script>
+        
+<!--
+    <script>changeGrade("smith1234", 70);</script>
+-->
 <script  type="text/Javascript">
     function changeGrade(username, grade){
         var studentsList = [];
@@ -21,30 +50,16 @@
             $.each(studentsList, function(key, student){
                 if(student.username == username){
                     student.grade = grade;
-                    console.log("new grade is" + grade);
+                    console.log("new grade is: " + grade + "%");
                 }
             });
-        });    
+        }); 
+        console.log("success");
+        var JSONdata = JSON.stringify(studentsList);
+  
     }  
 </script>
 
-<!-- change grade and write to file. -->
-<script>
-    var studentsList = [];
-    function changeGrade(username, grade){
-        $.getJSON('students.json', function(data) {
-                $.each(data.students, function(key, student) {
-                    studentsList.push(student);
-                });
-                $.each(studentsList, function(key, student){
-                    if(student.username == username){
-                        student.grade = grade;
-                    }
-                });
-                //var json = JSON.parse(‘<json string>’);
-                // var JSONData = JSON.stringify(data);
-                // var fs = require('fs');
-                // fs.writeFile("students.1.json", JSONData);
-            });              
-    }
-</script>
+
+
+

@@ -12,6 +12,8 @@
 	<link href="../bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
 	<link href="../bootstrap/css/bootstrap.icon-large.min.css" rel="stylesheet">
     <link href="../theme.css" rel="stylesheet">
+    <script src="GradesJavaScript.js"></script>
+
     
      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
      <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
@@ -23,10 +25,17 @@
     <!--SCRIPTS -->
     <!--Display grade for correctly entered login-->
     <script type="text/Javascript">
-        function displayGrade(grade) {
-            var userName = document.getElementById("username").value;
+        function displayGrade(student) {
             $("#gradeDisplay").html("");
-            $("#gradeDisplay").append("<p> Grade for " + userName + "is: " + grade + "%. </p>");
+            $("#gradeDisplay").append("<p> Grades for " + student.firstname + " " + student.lastname + "</p>");
+            $("#gradeDisplay").append("<p> Student ID Number: " + student.ID + "</p>");
+            $("#gradeDisplay").append("<p> Quiz1: " + student.quiz1 + "% </p>");
+            $("#gradeDisplay").append("<p> Quiz2: " + student.quiz2 + "% </p>");
+            $("#gradeDisplay").append("<p> Midterm: " + student.midterm + "% </p>");
+            $("#gradeDisplay").append("<p> Quiz3: " + student.quiz3 + "% </p>");
+            $("#gradeDisplay").append("<p> Quiz4: " + student.quiz4 + "% </p>");
+            $("#gradeDisplay").append("<p> Final: " + student.final + "% </p>");
+            $("#gradeDisplay").append("<p> Total Grade: " + student.quiz1 + "% </p>");
         }
     </script>
 
@@ -36,7 +45,17 @@
             //console.log("displaying login fail");
             var userName = document.getElementById("username").value;
             $("#gradeDisplay").html("");
-            $("#gradeDisplay").append("<p> No grade found for user: " + userName + ". Make sure your login information is correct. </p>");
+            $("#gradeDisplay").append("<p> No login found for user: " + userName + ". Make sure your login information is correct. </p>");
+        }
+    </script>
+
+       <!--Display error message for failed login -->
+       <script type="text/Javascript">
+        function displayLoginFailPassword(){
+            //console.log("displaying login fail");
+            var userName = document.getElementById("username").value;
+            $("#gradeDisplay").html("");
+            $("#gradeDisplay").append("<p> Password incorrect for user: " + userName + ". </p>");
         }
     </script>
 
@@ -44,6 +63,7 @@
     <script type="text/Javascript">
         function checkLogin() {
             var studentsList = [];
+            var studentLogin;
             var userName = document.getElementById("username").value;
             var password = document.getElementById("password").value;
             var foundUser = false;
@@ -60,14 +80,18 @@
                             passwordCorrect = true;
                             //console.log("correct password");
                             grade = student.grade;
+                            studentLogin = student;
                         }
-
                     }
                 });
                 if(foundUser == true && passwordCorrect == true){
                     //console.log("login successful");
-                    displayGrade(grade);
-                } else {
+                    displayGrade(studentLogin);
+
+                } else if (foundUser == true && passwordCorrect == false){
+                    displayLoginFailPassword();
+                }
+                 else {
                     displayLoginFail();
                     //console.log("login unsuccessful");
                 }
@@ -103,7 +127,7 @@
                 <li><a href="InsecureSite.html">Course Homepage</a></li>
                 <li><a href="">Class Forum</a></li> 
                 <li><a href="">Buy Class Textbook</a></li> 
-                <li class="active"><a href="./">Course Feedback</a></li> 
+                <li class="active"><a href="./">View Grades</a></li> 
             </ul>
         </div>
     </div> 
@@ -111,6 +135,7 @@
 
 
     <!-- FEEDBACK ENTRY -->
+    <p><b>Enter Login Information</b></p>
     <label><b>Username: </b></label><br>
     <input type="text" name="username" id="username">
     <br>
@@ -119,12 +144,11 @@
     <br>
     <input type="password" name="password" id="password">  
     <br>
-   
+   <br>
     <input type="submit" onclick="checkLogin();"><br/>
 
     <br>
     <!-- END FEEDBACK ENTRY -->
-
 
     <!-- DISPLAY MESSAGE -->
     <div id="gradeDisplay">
@@ -132,9 +156,6 @@
     </div>
     <!-- END DISPLAY MESSAGE -->
 
-
-<!-- </div> -->
-
-
+</div>
 </body>
 </html>
