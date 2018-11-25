@@ -17,48 +17,84 @@ chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-security
      -->
      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
      <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
-
+     <style type="text/css"></style>
+    
+    <!--SCRIPTS -->
+    <!--Display grade for correctly entered login-->
     <script type="text/Javascript">
-        function displayGrade() {
+        function displayGrade(grade) {
             var userName = document.getElementById("username").value;
-       $("#gradeDisplay").append("<p> Grade for " + userName + "is: </p>")
-    }
+            $("#gradeDisplay").html("");
+            $("#gradeDisplay").append("<p> Grade for " + userName + "is: " + grade + "%. </p>");
+        }
     </script>
 
-    <script>
-
-    $(document).ready(function() {
-    var studentsList = [];
-    $.getJSON('students.json', function(data) {
-        $.each(data.students, function(key, student) {
-            studentsList.push(student);
-//    alert(val.username);
-//    alert(val.password);
-    });
-    $.each(studentsList, function(key, student){
-        console.log(student.username);
-    });
-});
-
-  
-    })
+    <!--Display error message for failed login -->
+    <script type="text/Javascript">
+        function displayLoginFail(){
+            console.log("displaying login fail");
+            var userName = document.getElementById("username").value;
+            $("#gradeDisplay").html("");
+            $("#gradeDisplay").append("<p> No grade found for user: " + userName + ". Make sure your login information is correct. </p>");
+        }
     </script>
 
-    <style type="text/css"></style>
+    <!-- Change Grade -->
+    <script type="text/Javascript">
+    
+    </script>
+
+    <!-- Get students list and check input-->
+    <script type="text/Javascript">
+        function checkLogin() {
+            var studentsList = [];
+            var userName = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            var foundUser = false;
+            var passwordCorrect = false;
+            var grade = 0;
+            $.getJSON('students.json', function(data) {
+                $.each(data.students, function(key, student) {
+                    studentsList.push(student);
+                });
+                $.each(studentsList, function(key, student){
+                    if(userName == student.username){
+                        foundUser = true; 
+                        if(password == student.password){
+                            passwordCorrect = true;
+                            //console.log("correct password");
+                            grade = student.grade;
+                        }
+
+                    }
+                });
+                if(foundUser == true && passwordCorrect == true){
+                    //console.log("login successful");
+                    displayGrade(grade);
+                } else {
+                    displayLoginFail();
+                    //console.log("login unsuccessful");
+                }
+            });                  
+        }
+    </script>
+    
+    <!--END SCRIPTS -->
+
 </head>
 
 
 <body>
-    <!-- <div class="container-narrow">
+     <!-- <div class="container-narrow">
         <div class="title">
             <h4><strong><a href="../index.html">Information Security Project</a></strong>
             <p style="font-size:14px">Course Feedback</p>
             <p style="font-size:12px">Autumn 2018</p>
         </h4>    
-    </div> -->
+    </div>  -->
 
     <!-- SITE NAVIGATION -->
-    <!-- <div class="navbar navbar-default" role="navigation">
+     <!-- <div class="navbar navbar-default" role="navigation">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -75,7 +111,7 @@ chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-security
                 <li class="active"><a href="./">Course Feedback</a></li> 
             </ul>
         </div>
-    </div> -->
+    </div>  -->
     <!-- END SITE NAVIGATION -->
 
 
@@ -89,7 +125,8 @@ chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-security
     <input type="password" name="password" id="password">  
     <br>
    
-    <input type="submit" onclick="displayGrade();"><br/>
+    <!-- <input type="submit" onclick="displayGrade();"><br/> -->
+    <input type="submit" onclick="checkLogin();"><br/>
     <br>
     <!-- END FEEDBACK ENTRY -->
 
