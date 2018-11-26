@@ -8,24 +8,75 @@
     
     <title>CSE 4471 - Information Security Project</title>
     <!-- Bootstrap core CSS -->
-	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<!-- Bootstrap theme -->
-	<link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+	<link href="../bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
 	<!-- Bootstrap icon -->
-	<link href="bootstrap/css/bootstrap.icon-large.min.css" rel="stylesheet">
+	<link href="../bootstrap/css/bootstrap.icon-large.min.css" rel="stylesheet">
 	<!-- Custom styles for this template -->
-	<link href="theme.css" rel="stylesheet">
+	<link href="../theme.css" rel="stylesheet">
 </head>
 
 <body>
-
     <div class="container-narrow">
         <div class="title">
-        <h4><strong>Secure Website</strong>
-       
-      
+        <h4><strong><a href="../index.html">Information Security Project</a></strong>
+            <p style="font-size:14px">Autumn 2018</p>
+        </h4>    
     </div>
-  
+
+    <!-- SITE NAVIGATION -->
+    <div class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul id="site-nav" class="nav navbar-nav">
+                <li class="active"><a href="./">Home</a></li>
+                <li><a href="">Class Forum</a></li>
+                <li><a href="">Buy Class Textbook</a></li> <!--Link Webpage Here-->
+                <li><a href="ViewGradesSecure.html">View Grades</a></li> 
+            </ul>
+        </div>
+    </div>
+    <!-- END SITE NAVIGATION -->
+
+    <!-- INFO TABLE -->
+    <div class="content">
+            <h3>Overview</h3>
+            <h5>Disclaimer:</h5>
+            <p>This project was created for educational purposes only.</p>
+            <p>This website was made with intentional security flaws
+                    in order to show the dangers of cross site scripting and JavaScript injection attacks. 
+                    Do <u><b>not</b></u> attempt to recreate examples shown in this project on other websites.</p>
+            <hr>
+            <h4>General Information</h4>       
+        </div>
+            <table>
+                    <tbody>
+                        <tr>
+                            <td>Title</td>
+                            <td>Information Security - Cross Site Scripting Attacks and Prevention</td>
+                        </tr>
+                        <tr>
+                            <td>Goals</td>
+                            <td>Understand website vulnerabilities that may be exploited by Cross-Site Scripting and preventative measures against these exploits.</td>
+                        </tr>
+                        <tr>
+                            <td>Authors</td>
+                            <td>Ellen DeWitt, Nate Hymer, Aisha Iftikhar, Tim Lake and Annette Petty</td>
+                        </tr>
+                    </tbody>
+                </table>
+    </div>
+    <!-- END INFO TABLE -->
+</div>
+
 
 </body>
 </html>
