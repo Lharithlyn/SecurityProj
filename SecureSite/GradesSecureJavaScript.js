@@ -1,17 +1,12 @@
 //display error message for failed login where username is not found
 function displayLoginFail(){
-    //console.log("displaying login fail");
-    var userName = document.getElementById("username").value;
-    $("#gradeDisplay").html("");
-    $("#gradeDisplay").append("<p> No login found for user: " + userName + ". Make sure your login information is correct. </p>");
+    document.getElementById('display').innerHTML = "No login found for user: "+ document.getElementById("username").value + ". Make sure your login information is correct.";
 }
 
 //display login fail for incorrect password
 function displayLoginFailPassword(){
     //console.log("displaying login fail");
-    var userName = document.getElementById("username").value;
-    $("#gradeDisplay").html("");
-    $("#gradeDisplay").append("<p> Password incorrect for user: " + userName + ". </p>");
+    document.getElementById('display').innerHTML = "Password incorrect for user: "+ document.getElementById("username").value + ". ";
 }
 
 //check login
@@ -32,14 +27,12 @@ function checkLogin() {
                 foundUser = true; 
                 if(password == student.password){
                     passwordCorrect = true;
-                    //console.log("correct password");
                     grade = student.grade;
                     studentLogin = student;
                 }
             }
         });
         if(foundUser == true && passwordCorrect == true){
-            //console.log("login successful");
             displayGrade(studentLogin);
 
         } else if (foundUser == true && passwordCorrect == false){
@@ -47,7 +40,6 @@ function checkLogin() {
         }
          else {
             displayLoginFail();
-            //console.log("login unsuccessful");
         }
     });                  
 }
@@ -67,13 +59,12 @@ function calculateFinalGrade(student){
 //display grade for currently entered login
 function displayGrade(student) {
     var totalGrade = calculateFinalGrade(student) * 100;
-    $("#gradeDisplay").html("");
-    $("#gradeDisplay").append("<p> Grades for " + student.firstname + " " + student.lastname + "</p>");
-    $("#gradeDisplay").append("<p> Quiz1: " + student.quiz1 + "/10 </p>");
-    $("#gradeDisplay").append("<p> Quiz2: " + student.quiz2 + "/10 </p>");
-    $("#gradeDisplay").append("<p> Midterm: " + student.midterm + "/50 </p>");
-    $("#gradeDisplay").append("<p> Quiz3: " + student.quiz3 + "/10 </p>");
-    $("#gradeDisplay").append("<p> Quiz4: " + student.quiz4 + "/10 </p>");
-    $("#gradeDisplay").append("<p> Final: " + student.final + "50 </p>");
-    $("#gradeDisplay").append("<p> Total Grade: " + Math.round(totalGrade) + "% </p>");
+    document.getElementById('grades').innerHTML = "Grades for " + student.firstname + " " + student.lastname;
+    document.getElementById('quiz1').innerHTML = "Quiz1: " + student.quiz1 + "/10";
+    document.getElementById('quiz2').innerHTML = "Quiz2: " + student.quiz2 + "/10";
+    document.getElementById('midterm').innerHTML = "Midterm: " + student.midterm + "/50";
+    document.getElementById('quiz3').innerHTML = "Quiz3: " + student.quiz3 + "/10";
+    document.getElementById('quiz4').innerHTML = "Quiz4: " + student.quiz4 + "/10";
+    document.getElementById('final').innerHTML = "Final: " + student.final + "/100";
+    document.getElementById('total').innerHTML = "Total Grade: " + Math.round(totalGrade) + "%";
 }

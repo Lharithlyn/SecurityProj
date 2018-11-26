@@ -13,6 +13,36 @@ chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-security
         });
     });     
 </script>
+
+<!--
+<script>printUserDetails("smith1234");</script>
+-->
+<script type="text/Javascript">
+    function printUserDetails(username){
+        var studentsList = [];
+        $.getJSON('students.json', function(data) {
+            $.each(data.students, function(key, student) {
+                studentsList.push(student);
+            });
+            $.each(studentsList, function(key, student){
+                if(student.username == username){
+                    console.log("First Name: " + student.firstname);
+                    console.log("Last Name: " + student.lastname);
+                    console.log("Student ID: " + student.ID);
+                    console.log("Phone: " + student.phone);
+                    console.log("Address: " + student.address);
+                    console.log("Birthday: " + student.birthday);
+                    console.log("Last Login Time: " + student.lastLogintime);
+                    console.log("Last Login IP: " + student.lastLoginIP);
+                    console.log("Login Times: " + student.loginTimes);
+                    console.log("Online Time: " + student.onlineTime);
+                }
+            });
+        }); 
+
+    } 
+</script>
+
         
 <!--
     <script>changeGrade("smith1234", 70);</script>
@@ -31,9 +61,7 @@ chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-security
                 }
             });
         }); 
-        //console.log("success");
-        //var JSONdata = JSON.stringify(studentsList);
-  
+
     }  
 </script>
 
