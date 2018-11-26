@@ -1,0 +1,42 @@
+<!--
+chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-security
+-->
+<!-- Display all student logins -->
+<script>
+    var studentsList = [];
+    $.getJSON('students.json', function(data) {
+        $.each(data.students, function(key, student) {
+            studentsList.push(student);
+        });
+        $.each(studentsList, function(key, student){
+            console.log("Username: " + student.username + ", Password: " + student.password);
+        });
+    });     
+</script>
+        
+<!--
+    <script>changeGrade("smith1234", 70);</script>
+-->
+<script  type="text/Javascript">
+    function changeGrade(username, grade){
+        var studentsList = [];
+        $.getJSON('students.json', function(data) {
+            $.each(data.students, function(key, student) {
+                studentsList.push(student);
+            });
+            $.each(studentsList, function(key, student){
+                if(student.username == username){
+                    student.grade = grade;
+                    console.log("new grade is: " + grade + "%");
+                }
+            });
+        }); 
+        //console.log("success");
+        //var JSONdata = JSON.stringify(studentsList);
+  
+    }  
+</script>
+
+
+
+

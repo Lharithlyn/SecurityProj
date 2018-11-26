@@ -1,0 +1,54 @@
+{
+    "students": [
+        {
+            "username": "smith1234",
+            "password": "password1",
+            "grade": 100
+        },
+        {
+            "username": "johnson34",
+            "password": "qwerty4",
+            "grade": 95
+        },
+        {
+            "username": "williams84",
+            "password": "Wi11iam",
+            "grade": 90
+        },
+        {
+            "username": "jones189",
+            "password": "121212",
+            "grade": 85
+        },
+        {
+            "username": "brown76",
+            "password": "monkey",
+            "grade": 80
+        },
+        {
+            "username": "davis42",
+            "password": "zigzag",
+            "grade": 75
+        },
+        {
+            "username": "miller66",
+            "password": "987654321",
+            "grade": 70
+        },
+        {
+            "username": "wilson32",
+            "password": "1q2w3e",
+            "grade": 65
+        },
+        {
+            "username": "James27",
+            "password": "abc123",
+            "grade": 60
+        },
+        {
+            "username": "moore9",
+            "password": "123321",
+            "grade": 55
+        }
+    ]
+ }
