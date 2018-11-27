@@ -4,7 +4,7 @@ chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-security
 <!-- Display all student logins -->
 <script>
     var studentsList = [];
-    $.getJSON('students.json', function(data) {
+    $.getJSON('Students.json', function(data) {
         $.each(data.students, function(key, student) {
             studentsList.push(student);
         });
@@ -14,13 +14,19 @@ chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-security
     });     
 </script>
 
+<script>
+    function displayAlert(text){
+        console.log(text);
+    }
+</script>
+
 <!--
 <script>printUserDetails("smith1234");</script>
 -->
 <script type="text/Javascript">
     function printUserDetails(username){
         var studentsList = [];
-        $.getJSON('students.json', function(data) {
+        $.getJSON('Students.json', function(data) {
             $.each(data.students, function(key, student) {
                 studentsList.push(student);
             });

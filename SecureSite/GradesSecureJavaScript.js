@@ -1,12 +1,24 @@
 //display error message for failed login where username is not found
 function displayLoginFail(){
+    clearGrades();
     document.getElementById('display').innerHTML = "No login found for user: "+ document.getElementById("username").value + ". Make sure your login information is correct.";
 }
 
 //display login fail for incorrect password
 function displayLoginFailPassword(){
-    //console.log("displaying login fail");
+    clearGrades();
     document.getElementById('display').innerHTML = "Password incorrect for user: "+ document.getElementById("username").value + ". ";
+}
+
+function clearGrades(){
+    document.getElementById('grades').innerHTML = "";
+    document.getElementById('quiz1').innerHTML =  "";
+    document.getElementById('quiz2').innerHTML =  "";
+    document.getElementById('midterm').innerHTML =  "";
+    document.getElementById('quiz3').innerHTML =  "";
+    document.getElementById('quiz4').innerHTML =  "";
+    document.getElementById('final').innerHTML =  "";
+    document.getElementById('total').innerHTML =  "";
 }
 
 //check login
@@ -18,7 +30,7 @@ function checkLogin() {
     var foundUser = false;
     var passwordCorrect = false;
     var grade = 0;
-    $.getJSON('students.json', function(data) {
+    $.getJSON('Students.json', function(data) {
         $.each(data.students, function(key, student) {
             studentsList.push(student);
         });

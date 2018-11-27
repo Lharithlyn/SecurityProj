@@ -23,7 +23,7 @@ function checkLogin() {
     var foundUser = false;
     var passwordCorrect = false;
     var grade = 0;
-    $.getJSON('students.json', function(data) {
+    $.getJSON('Students.json', function(data) {
         $.each(data.students, function(key, student) {
             studentsList.push(student);
         });
