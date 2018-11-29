@@ -10,6 +10,7 @@
 	<link href="../bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
 	<link href="../bootstrap/css/bootstrap.icon-large.min.css" rel="stylesheet">
     <link href="../theme.css" rel="stylesheet">
+    <script src="TextbookInsecureScript.js"></script>
 
     
      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -39,7 +40,7 @@
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul id="site-nav" class="nav navbar-nav">
-					<li><a href="SecureSite.html">Home</a></li>
+					<li><a href="InsecureSite.html">Home</a></li>
 					<li><a href="">Class Forum</a></li> 
 					<li class="active"><a href="">Buy Class Textbook</a></li><!--Link Webpage Here-->
 					<li><a href="">View Grades</a></li> 
@@ -63,14 +64,14 @@
 			<h4>Payment Information</h4>
 			
 			<div>
-                <form id="getCC" name="getCC" method="post" action="makeCookie.php">
+			
 				Credit Card Number: <input type="text" name="CreditCard" id = "CreditCard"> Expiration Date: <input type = "text" name ="ExpirationDate" value = ""><br>
 				CVV: <input type  = "text" name = "CreditCardCode" id = "CreditCardCode"><br>
 				Billing / Shipping Address: <br>
 				Street Address: <input type="text" name="StreetAddress"> Zip Code: <input type = "text" name ="ZipCode" value = ""><br>
 				City: <input type="text" name="City"> State: <input type = "text" name ="State" value = ""><br>
-				<input type="submit" name="submit" value ="submit"/>
-				</form>
+				<input type="submit" onclick="createCookie();"/>
+				
 			
 			</div>
 			
@@ -80,3 +81,4 @@
 
 </body>
 </html>
+
