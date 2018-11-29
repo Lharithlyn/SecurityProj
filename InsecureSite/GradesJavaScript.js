@@ -8,7 +8,6 @@ function displayLoginFail(){
 
 //display login fail for incorrect password
 function displayLoginFailPassword(){
-    //console.log("displaying login fail");
     var userName = document.getElementById("username").value;
     $("#gradeDisplay").html("");
     $("#gradeDisplay").append("<p> Password incorrect for user: " + userName + ". </p>");
@@ -74,6 +73,6 @@ function displayGrade(student) {
     $("#gradeDisplay").append("<p> Midterm: " + student.midterm + "/50 </p>");
     $("#gradeDisplay").append("<p> Quiz3: " + student.quiz3 + "/10 </p>");
     $("#gradeDisplay").append("<p> Quiz4: " + student.quiz4 + "/10 </p>");
-    $("#gradeDisplay").append("<p> Final: " + student.final + "50 </p>");
+    $("#gradeDisplay").append("<p> Final: " + student.final + "/100 </p>");
     $("#gradeDisplay").append("<p> Total Grade: " + Math.round(totalGrade) + "% </p>");
 }
